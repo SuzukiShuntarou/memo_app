@@ -13,7 +13,7 @@ $ git clone https://github.com/自分のアカウント名/memo_app.git
     1. `$ cd memo_app`でディレクトリを移動
     2. `$ git switch memo`でmemoブランチに移動
     3. `$ bundle install` を実行
-    4. `$ bundle exec rubocop` と `$ bundle exec erblint --lint-all` を実行して警告が出ないことを確認
+    4. `$ bundle exec rubocop memoapp.rb` と `$ bundle exec erblint --lint-all` を実行して警告が出ないことを確認
 
 5. 以下の手順を実行してローカル環境でmemo_appを立ち上げます。
     1. `$ bundle exec ruby memoapp.rb` を実行
