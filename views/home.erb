@@ -1,0 +1,13 @@
+<header>
+  <h1>メモアプリTop画面</h1>
+  <section>
+    <ul>
+      <% @memo.each do |memo| %>
+        <% unless memo[1]["deleted_id"] %>
+          <% title_name = memo[1]['memo_title'] %>
+          <li><a href="/memos/<%= memo[0] %>"><%= title_name %></a></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+</header>

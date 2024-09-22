@@ -1,0 +1,20 @@
+<header>
+  <h1>メモアプリEdit画面</h1>
+</header>
+<section>
+  <form method="post" action="/memos/<%= @id %>">
+    <input type="hidden" name="_method" value="patch">
+    <div class="form-items">
+      <div class="form-container">
+        <label>メモタイトル</label>
+        <input type="text" name="memo_title" value="<%= @memo[@id]['memo_title'] %>" required>
+
+        <label>メモ内容</label>
+        <textarea name="memo_text" required><%= @memo[@id]['memo_text'] %></textarea>
+
+        <input type="submit" value="変更">
+      </div>
+    </div>
+  </form>
+  <a href="/memos/<%= @id %>">Show画面に戻る</a>
+</section>
