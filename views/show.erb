@@ -2,8 +2,8 @@
   <h1>メモアプリShow画面</h1>
 </header>
 <section>
-  <h2><%= @memo[@id]['memo_title'] %></h2>
-  <p style="white-space: pre-wrap;"><%= @memo[@id]['memo_text'] %></p>
+  <h2><%== @memo[@id]['memo_title'] %></h2>
+  <p style="white-space: pre-wrap;"><%== @memo[@id]['memo_text'] %></p>
   <div class="button-container">
     <input type="button" onclick="location.href='/memos/<%= @id %>/edit'" value="Edit画面">
     <form method="post" action="/memos/<%= @id %>">
