@@ -7,10 +7,10 @@
     <div class="form-items">
       <div class="form-container">
         <label>メモタイトル</label>
-        <input type="text" name="memo_title" value="<%= @memo[@id]['memo_title'] %>" required>
+        <input type="text" name="memo_title" value="<%= @memo['memo_title'] %>" required>
 
         <label>メモ内容</label>
-        <textarea name="memo_text" required><%= @memo[@id]['memo_text'] %></textarea>
+        <textarea name="memo_text" required><%= @memo['memo_text'] %></textarea>
 
         <input type="submit" value="変更">
       </div>

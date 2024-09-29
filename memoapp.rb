@@ -5,7 +5,7 @@ require 'sinatra/reloader'
 require 'json'
 
 get '/memos' do
-  load
+  @memos = load_memos
   @page_title = 'Top'
   erb :home
 end
@@ -16,9 +16,10 @@ get '/memos/new' do
 end
 
 get '/memos/:id' do
-  load
+  memos = load_memos
   @id = params['id']
-  if @memo[@id] && !@memo[@id]['deleted_id']
+  @memo = memos[@id]
+  if @memo
     @page_title = 'Show memo'
     erb :show
   else
@@ -27,9 +28,10 @@ get '/memos/:id' do
 end
 
 get '/memos/:id/edit' do
-  load
+  memos = load_memos
   @id = params['id']
-  if @memo[@id] && !@memo[@id]['deleted_id']
+  @memo = memos[@id]
+  if @memo
     @page_title = 'Edit memo'
     erb :edit
   else
@@ -38,27 +40,28 @@ get '/memos/:id/edit' do
 end
 
 post '/memos' do
-  load
-  id = (@memo.keys.map(&:to_i).max + 1)
-  @memo[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
-  save(@memo)
+  @memos = load_memos
+  id = (@memos.keys.map(&:to_i).max + 1)
+  @memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
+  save(@memos)
 
   redirect '/memos', 303
 end
 
 patch '/memos/:id' do
-  load
+  @memos = load_memos
   id = params['id']
-  @memo[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
-  save(@memo)
-
+  if @memos.key?(id)
+    @memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
+    save(@memos)
+  end
   redirect "/memos/#{id}", 303
 end
 
 delete '/memos/:id' do
-  load
-  @memo.delete(params['id'])
-  save(@memo)
+  @memos = load_memos
+  @memos.delete(params['id'])
+  save(@memos)
 
   redirect '/memos', 303
 end
@@ -69,12 +72,12 @@ end
 
 MEMOS_FILE = 'public/memos.json'
 
-def load
-  @memo = JSON.parse(File.read(MEMOS_FILE))
+def load_memos
+  JSON.parse(File.read(MEMOS_FILE))
 end
 
-def save(memo)
+def save(memos)
   File.open(MEMOS_FILE, 'w+') do |file|
-    file.write(memo.to_json)
+    file.write(memos.to_json)
   end
 end

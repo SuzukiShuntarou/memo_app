@@ -2,9 +2,9 @@
   <h1>メモアプリTop画面</h1>
   <section>
     <ul>
-      <% @memo.each do |memo| %>
-        <% title_name = memo[1]['memo_title'] %>
-        <li><a href="/memos/<%= memo[0] %>"><%== title_name %></a></li>
+      <% @memos.each do |id, memo| %>
+        <% title_name = memo['memo_title'] %>
+        <li><a href="/memos/<%= id %>"><%== title_name %></a></li>
       <% end %>
     </ul>
   </section>
