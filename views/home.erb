@@ -4,7 +4,7 @@
     <ul>
       <% @memos.each do |id, memo| %>
         <% title_name = memo['memo_title'] %>
-        <li><a href="/memos/<%= id %>"><%== title_name %></a></li>
+        <li><a href="/memos/<%= id %>"><%= h title_name %></a></li>
       <% end %>
     </ul>
   </section>

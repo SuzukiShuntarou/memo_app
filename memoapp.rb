@@ -43,7 +43,7 @@ post '/memos' do
   @memos = load_memos
   id = (@memos.keys.map(&:to_i).max + 1)
   @memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
-  save(@memos)
+  save_memos(@memos)
 
   redirect '/memos', 303
 end
@@ -53,7 +53,7 @@ patch '/memos/:id' do
   id = params['id']
   if @memos.key?(id)
     @memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
-    save(@memos)
+    save_memos(@memos)
   end
   redirect "/memos/#{id}", 303
 end
@@ -61,7 +61,7 @@ end
 delete '/memos/:id' do
   @memos = load_memos
   @memos.delete(params['id'])
-  save(@memos)
+  save_memos(@memos)
 
   redirect '/memos', 303
 end
@@ -76,8 +76,14 @@ def load_memos
   JSON.parse(File.read(MEMOS_FILE))
 end
 
-def save(memos)
+def save_memos(memos)
   File.open(MEMOS_FILE, 'w+') do |file|
     file.write(memos.to_json)
+  end
+end
+
+helpers do
+  def h(text)
+    Rack::Utils.escape_html(text)
   end
 end
