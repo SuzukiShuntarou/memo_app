@@ -41,7 +41,7 @@ end
 
 post '/memos' do
   @memos = load_memos
-  id = (@memos.keys.map(&:to_i).max + 1)
+  id = @memos.empty? ? '0' : (@memos.keys.map(&:to_i).max + 1)
   @memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
   save_memos(@memos)
 
