@@ -40,28 +40,28 @@ get '/memos/:id/edit' do
 end
 
 post '/memos' do
-  @memos = load_memos
-  id = @memos.empty? ? '0' : (@memos.keys.map(&:to_i).max + 1)
-  @memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
-  save_memos(@memos)
+  memos = load_memos
+  id = memos.empty? ? '0' : (memos.keys.map(&:to_i).max + 1)
+  memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
+  save_memos(memos)
 
   redirect '/memos', 303
 end
 
 patch '/memos/:id' do
-  @memos = load_memos
+  memos = load_memos
   id = params['id']
-  if @memos.key?(id)
-    @memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
-    save_memos(@memos)
+  if memos.key?(id)
+    memos[id] = { 'memo_title' => params['memo_title'], 'memo_text' => params['memo_text'] }
+    save_memos(memos)
   end
   redirect "/memos/#{id}", 303
 end
 
 delete '/memos/:id' do
-  @memos = load_memos
-  @memos.delete(params['id'])
-  save_memos(@memos)
+  memos = load_memos
+  memos.delete(params['id'])
+  save_memos(memos)
 
   redirect '/memos', 303
 end
