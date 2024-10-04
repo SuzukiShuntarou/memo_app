@@ -1,0 +1,11 @@
+<header>
+  <h1>メモアプリTop画面</h1>
+  <section>
+    <ul>
+      <% @memos.each do |id, memo| %>
+        <% title_name = memo['memo_title'] %>
+        <li><a href="/memos/<%= id %>"><%= h title_name %></a></li>
+      <% end %>
+    </ul>
+  </section>
+</header>
