@@ -2,7 +2,7 @@
   <h1>メモアプリEdit画面</h1>
 </header>
 <section>
-  <form method="post" action="/memos/<%= @id %>">
+  <form method="post" action="/memos/<%= @memo['memo_id'] %>">
     <input type="hidden" name="_method" value="patch">
     <div class="form-items">
       <div class="form-container">
@@ -16,5 +16,5 @@
       </div>
     </div>
   </form>
-  <a href="/memos/<%= @id %>">Show画面に戻る</a>
+  <a href="/memos/<%= @memo['memo_id'] %>">Show画面に戻る</a>
 </section>
