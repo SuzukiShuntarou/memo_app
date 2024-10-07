@@ -13,8 +13,8 @@ $ git clone https://github.com/自分のアカウント名/memo_app.git
 4. 以下の手順を実行してmemo_appに必要なgemをインストールします。
     1. `$ cd memo_app`でディレクトリを移動
     2. `$ git switch memo`でmemoブランチに移動
-    3. `$ which pg_config`pg_config のパスを取得
-    4. `$ bundle config build.pg --with-pg-config=5.で取得したパスを入力`でpg_configのパスを指定
+    3. `$ which pg_config`でpg_config のパスを取得
+    4. `$ bundle config build.pg --with-pg-config=3.で取得したパスを入力`でpg_configのパスを指定
     5. `$ bundle install` を実行
     6. `$ bundle exec rubocop memoapp.rb` と `$ bundle exec erblint --lint-all` を実行して警告が出ないことを確認
 
