@@ -5,8 +5,8 @@
   <h2><%= h @memo['memo_title'] %></h2>
   <p style="white-space: pre-wrap;"><%= h @memo['memo_text'] %></p>
   <div class="button-container">
-    <input type="button" onclick="location.href='/memos/<%= @id %>/edit'" value="Edit画面">
-    <form method="post" action="/memos/<%= @id %>">
+    <input type="button" onclick="location.href='/memos/<%= @memo['memo_id'] %>/edit'" value="Edit画面">
+    <form method="post" action="/memos/<%= @memo['memo_id'] %>">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="削除">
     </form>

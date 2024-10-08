@@ -6,6 +6,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rackup'
 gem 'puma'
+gem 'pg'
 
 # For plain Ruby scripts
 group :development do
